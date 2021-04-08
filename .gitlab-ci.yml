@@ -1,0 +1,39 @@
+image: maven:latest
+
+stages:
+  - build
+  - test
+  - deploy
+
+build:
+  stage: build
+  image: maven:latest
+  script:
+    - mvn compile
+  artifacts:
+    paths:
+      - build/libs/*.jar
+    expire_in: 1 week
+  only:
+    - main
+
+test:
+  image: maven:latest
+  stage: test
+  script:
+    - mvn test
+
+deploy_production:
+  stage: deploy
+  script:
+    - git remote add heroku https://heroku:$HEROKU_API_KEY@git.heroku.com/prefeitura-bff-bff-mig.git
+    - git push -f heroku HEAD:main
+    - echo “Deployed to Production Server https://prefeitura-bff-bff-mig.herokuapp.com/"
+  environment:
+    name: production
+    url: https://prefeitura-bff-bff-mig.herokuapp.com/
+  only:
+    - main
+
+after_script:
+  - echo “End CI”

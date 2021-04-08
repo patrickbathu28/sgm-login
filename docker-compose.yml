@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  api:
+    build:
+      context: .
+    container_name: sgm-login
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongodb
+    environment:
+      JAVA_ENV: dev
+
+  mongodb:
+    image: mongo:latest
+    expose:
+      - "27017"
+    ports:
+      - "27017:27017"
