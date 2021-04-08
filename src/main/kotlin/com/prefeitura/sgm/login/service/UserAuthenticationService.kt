@@ -43,6 +43,12 @@ class UserAuthenticationService {
         }
     }
 
+    fun logout(dados: DadosLogin?){
+        println("UserAuthenticationService.logout -  dados [ ${dados?.email} ]")
+        val user: User? = userRepository?.deleteByEmail(dados?.email)
+        println("UserAuthenticationService.logout -  user [ $user ]")
+    }
+
     private fun validate(token: String?): Boolean {
         return try {
             val tokenTratado = token?.replace("Bearer ", "")

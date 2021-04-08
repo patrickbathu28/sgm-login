@@ -7,10 +7,8 @@ import javax.persistence.Id
 @Entity
 data class User(
     @Id
-    @GeneratedValue
-    val id : Long? = null,
-    var nome: String? = null,
     val email : String? = null,
+    var nome: String? = null,
     val senha : String? = null,
     var token : String? = null
 )

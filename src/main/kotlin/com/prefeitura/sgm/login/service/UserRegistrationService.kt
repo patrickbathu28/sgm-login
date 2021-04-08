@@ -21,14 +21,10 @@ class UserRegistrationService {
         user.token = tokenService!!.generateToken(user).toString()
         println("Token : " + user.token)
         var userRegister : User? = null
-        if(userRepository?.findByEmail(user.email) != null){
-            userRepository?.deleteByEmail(user.email)
-            userRegister =  userRepository!!.save(user)
-        }else{
-            userRegister =  userRepository!!.save(user)
-        }
 
-        println("User Logado : $user")
+        userRegister = userRepository!!.save(user)
+
+        println("User Logado : $userRegister")
         return userRegister
     }
 }
