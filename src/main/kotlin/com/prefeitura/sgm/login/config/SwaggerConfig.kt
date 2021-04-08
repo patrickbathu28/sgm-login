@@ -31,7 +31,7 @@ class SpringFoxConfig {
         return Docket(DocumentationType.SWAGGER_2)
             .select()
             .paths(PathSelectors.any())
-            .apis(RequestHandlerSelectors.basePackage("com.prefeitura.bff.mig.controller"))
+            .apis(RequestHandlerSelectors.basePackage("com.prefeitura.sgm.login.controller"))
             .build()
             .apiInfo(apiInfo())
     }
