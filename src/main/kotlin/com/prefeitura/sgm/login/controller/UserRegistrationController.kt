@@ -25,7 +25,6 @@ class UserRegistrationController {
         this.userRegistrationService = userRegistrationService
     }
 
-
     @PostMapping("v1/user")
     fun registrate(@RequestBody user: User): ResponseEntity<User> =
          ResponseEntity.status(HttpStatus.OK).body(userRegistrationService?.registrate(user))

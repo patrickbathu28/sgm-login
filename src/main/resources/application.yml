@@ -1,6 +1,11 @@
 spring:
   application:
     name: sgm-login
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: sgm-login
 
 server:
   port: 8080
