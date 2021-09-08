@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class UserCadastroController ( val userCadastroRepository: UserCadastroRepository  ) {
 
-
     @PostMapping("v1/user/cadastro")
     fun registrate(@RequestBody user: UserCadastrado): ResponseEntity<UserCadastrado> =
          ResponseEntity.status(HttpStatus.OK).body(userCadastroRepository.save(user))

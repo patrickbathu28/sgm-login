@@ -19,7 +19,6 @@ class SpringFoxConfig {
     @Value("\${spring.application.name}")
     var name: String? = null
 
-
     @Value("\${swagger.version}")
     var version: String? = null
 

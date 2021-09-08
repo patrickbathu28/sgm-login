@@ -11,17 +11,13 @@ import org.springframework.web.bind.annotation.*
 
 @CrossOrigin(origins = arrayOf("http://localhost:4200"))
 @RestController
-class AuthenticationController {
-
-    private var userAuthenticationService: UserAuthenticationService? = null
-
-    private var userAutheticatedDTO  :  UserAutheticatedDTO? = null
+class AuthenticationController ( val userAuthenticationService: UserAuthenticationService?,
+                                 var userAutheticatedDTO  :  UserAutheticatedDTO?) {
 
     @Autowired
     fun AuthenticationController(userAuthenticationService: UserAuthenticationService?) {
         this.userAuthenticationService = userAuthenticationService
     }
-
 
     @PostMapping("v1/login")
     fun autenticar(
@@ -33,8 +29,6 @@ class AuthenticationController {
     }
 
     @PostMapping("v1/logout")
-    fun logout(
-        @RequestBody dadosLogin: DadosLogin?
-    ): Unit? = userAuthenticationService?.logout(dadosLogin)
+    fun logout( @RequestBody dadosLogin: DadosLogin? ): Unit? = userAuthenticationService?.logout(dadosLogin)
 
 }

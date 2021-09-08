@@ -5,15 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-class EurekaConfig {
+class EurekaConfig ( val eurekaClient: EurekaClient? ) {
 
-    @Autowired
-    private val eurekaClient: EurekaClient? = null
-
-    fun serviceUrl(): String? {
-        val instance = eurekaClient!!.getNextServerFromEureka("STORES", false)
-        return instance.homePageUrl
-    }
-
+    fun serviceUrl(): String? =
+        eurekaClient!!.getNextServerFromEureka("STORES", false).homePageUrl
 
 }

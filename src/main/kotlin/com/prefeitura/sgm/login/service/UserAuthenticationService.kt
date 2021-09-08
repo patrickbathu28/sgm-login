@@ -14,19 +14,17 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.util.*
 
-
 @Service
-class UserAuthenticationService {
+class UserAuthenticationService ( val userRepository: UserRepository?,
+                                  val tokenService: TokenService? ) {
 
-    private var userRepository: UserRepository? = null
-    private var tokenService: TokenService? = null
+    private val logger = LoggerFactory.getLogger(javaClass)
 
     @Autowired
     fun UserAuthenticationService(userRepository: UserRepository?, tokenService: TokenService?) {
         this.userRepository = userRepository
         this.tokenService = tokenService
     }
-
 
     fun authenticate(dados: DadosLogin?, token: String?): User? {
         println("UserAuthenticationService.authenticate -  dados [ $dados ]  token [ $token ] ")
@@ -38,7 +36,7 @@ class UserAuthenticationService {
             } else {
                 throw InvalidLoginException()
             }
-        }else {
+        } else {
             throw InvalidLoginException()
         }
     }

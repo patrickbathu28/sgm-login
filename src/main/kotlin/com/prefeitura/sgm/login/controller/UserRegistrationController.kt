@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.RestController
 
 @CrossOrigin(origins = arrayOf("http://localhost:4200"))
 @RestController
-class UserRegistrationController {
-
-    private var userRegistrationService: UserRegistrationService? = null
-
-    private var userAutheticatedDTO: UserAutheticatedDTO? = null
+class UserRegistrationController ( val userRegistrationService: UserRegistrationService?,
+                                   val userAutheticatedDTO: UserAutheticatedDTO?) {
 
     @Autowired
     fun UserRegistrationController(userRegistrationService: UserRegistrationService?) {
